@@ -2,16 +2,13 @@ public class Vehiculo {
     private String placa;
     private String marca;
     private String modelo;
-    private String color;
-    private String tipo;
+    private Cliente propietario;
 
-    // Constructor
-    public Vehiculo(String placa, String marca, String modelo, String color, String tipo) {
+    public Vehiculo(String placa, String marca, String modelo, Cliente propietario) {
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
-        this.color = color;
-        this.tipo = tipo;
+        this.propietario = propietario;
     }
 
     // Getters y setters
@@ -39,19 +36,11 @@ public class Vehiculo {
         this.modelo = modelo;
     }
 
-    public String getColor() {
-        return color;
+    public Cliente getPropietario() {
+        return propietario;
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setPropietario(Cliente propietario) {
+        this.propietario = propietario;
     }
 }
