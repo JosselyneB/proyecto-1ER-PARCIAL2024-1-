@@ -46,17 +46,17 @@ CREATE TABLE pagos (
 );
 
 
+INSERT INTO clientes (nombre, apellido, telefono, direccion, email) 
+VALUES ('Juan', 'Pérez', '123456789', 'Calle Principal 123', 'juan@example.com');
 
-INSERT INTO clientes (nombre, apellido, telefono, direccion, email)
-VALUES ('John Doe', 'Doe', '1234567890', '123 Main St', 'johndoe@example.com');
+INSERT INTO carros (marca, modelo, color, placa, propietario_id) 
+VALUES ('Toyota', 'Corolla', 'Rojo', 'ABC-123', 1);
 
-INSERT INTO clientes (nombre, apellido, telefono, direccion, email)
-VALUES ('Jane Smith', 'Smith', '0987654321', '456 Elm St', 'janesmith@example.com');
+INSERT INTO ingresos (fecha_entrada, vehiculo_id) 
+VALUES ('2024-05-25 10:00:00', 1);
 
-INSERT INTO clientes (nombre, apellido, telefono, direccion, email)
-VALUES ('Bob Johnson', 'Johnson', '5551234567', '789 Oak St', 'bobjohnson@example.com');
-
-
-
-
-SELECT * FROM  clientes
+-- SELECT * FROM  clientes
+-- SELECT * FROM  carros
+-- SELECT * FROM  ingreos
+--SELECT id FROM ingresos;
+-- SELECT * FROM pagos;
