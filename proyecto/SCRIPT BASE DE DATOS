@@ -45,15 +45,36 @@ CREATE TABLE pagos (
     FOREIGN KEY (ingreso_id) REFERENCES ingresos(id)
 );
 
+CREATE TABLE registro_pagos (
+    id SERIAL PRIMARY KEY,
+    carros_id INTEGER REFERENCES carros(id),
+    pagos_id INTEGER REFERENCES pagos(id),
+    fecha_pago TIMESTAMP,
+    FOREIGN KEY (carros_id) REFERENCES carros(id)
+);
+
+
+
+
 
 INSERT INTO clientes (nombre, apellido, telefono, direccion, email) 
 VALUES ('Juan', 'Pérez', '123456789', 'Calle Principal 123', 'juan@example.com');
 
 INSERT INTO carros (marca, modelo, color, placa, propietario_id) 
-VALUES ('Toyota', 'Corolla', 'Rojo', 'ABC-123', 1);
+VALUES ('Toyota', 'Corolla', 'Azul', 'DPC-467', 1);
 
 INSERT INTO ingresos (fecha_entrada, vehiculo_id) 
 VALUES ('2024-05-25 10:00:00', 1);
+
+INSERT INTO salidas (fecha_salida, ingreso_id)
+VALUES ('2024-05-25 15:00:00', 1);
+
+INSERT INTO pagos (monto, metodo_pago, fecha_pago, ingreso_id)
+VALUES (150.00, 'Efectivo', '2024-05-25', 2);
+
+
+INSERT INTO pagos (monto, fecha_pago) 
+VALUES (100, '2024-05-27');
 
 -- SELECT * FROM  clientes
 -- SELECT * FROM  carros
