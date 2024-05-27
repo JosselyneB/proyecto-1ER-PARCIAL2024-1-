@@ -1,3 +1,7 @@
+-- Database: bd_ProyectoWeb
+
+-- DROP DATABASE IF EXISTS "bd_ProyectoWeb";
+
 -- Creación de la tabla clientes
 CREATE TABLE clientes (
     id SERIAL PRIMARY KEY,
@@ -53,31 +57,47 @@ CREATE TABLE registro_pagos (
     FOREIGN KEY (carros_id) REFERENCES carros(id)
 );
 
-
-
+CREATE TABLE parqueadero (
+    id SERIAL PRIMARY KEY,
+    capacidad INTEGER,
+    espacios_disponibles INTEGER
+);
 
 
 INSERT INTO clientes (nombre, apellido, telefono, direccion, email) 
-VALUES ('Juan', 'Pérez', '123456789', 'Calle Principal 123', 'juan@example.com');
+VALUES 
+('Juan', 'Pérez', '123456789', 'Calle Principal 123', 'juan@example.com'),
+('María', 'González', '987654321', 'Avenida 5 456', 'maria@example.com'),
+('Pedro', 'Rodríguez', '555123456', 'Calle 12 789', 'pedro@example.com');
 
 INSERT INTO carros (marca, modelo, color, placa, propietario_id) 
-VALUES ('Toyota', 'Corolla', 'Azul', 'DPC-467', 1);
+VALUES 
+('Toyota', 'Corolla', 'Azul', 'DPC-467', 1),
+('Ford', 'Focus', 'Rojo', 'ABC123', 2),
+('Honda', 'Civic', 'Blanco', 'XYZ789', 3);
 
 INSERT INTO ingresos (fecha_entrada, vehiculo_id) 
-VALUES ('2024-05-25 10:00:00', 1);
+VALUES 
+('2024-05-25 10:00:00', 1),
+('2024-05-26 11:00:00', 2),
+('2024-05-27 12:00:00', 3);
 
 INSERT INTO salidas (fecha_salida, ingreso_id)
-VALUES ('2024-05-25 15:00:00', 1);
+VALUES 
+('2024-05-25 15:00:00', 1),
+('2024-05-26 16:00:00', 2),
+('2024-05-27 17:00:00', 3);
 
 INSERT INTO pagos (monto, metodo_pago, fecha_pago, ingreso_id)
-VALUES (150.00, 'Efectivo', '2024-05-25', 2);
+VALUES 
+(150.00, 'Efectivo', '2024-05-25', 1),
+(120.00, 'Tarjeta', '2024-05-26', 2),
+(180.00, 'Efectivo', '2024-05-27', 3);
+
+INSERT INTO parqueadero (capacidad, espacios_disponibles) 
+VALUES 
+(100, 100),
+(200, 150),
+(300, 250);
 
 
-INSERT INTO pagos (monto, fecha_pago) 
-VALUES (100, '2024-05-27');
-
--- SELECT * FROM  clientes
--- SELECT * FROM  carros
--- SELECT * FROM  ingreos
---SELECT id FROM ingresos;
--- SELECT * FROM pagos;
