@@ -1,103 +1,103 @@
--- Database: bd_ProyectoWeb
-
--- DROP DATABASE IF EXISTS "bd_ProyectoWeb";
-
--- Creación de la tabla clientes
-CREATE TABLE clientes (
-    id SERIAL PRIMARY KEY,
-    nombre VARCHAR(255),
-    apellido VARCHAR(255),
-    telefono VARCHAR(20),
-    direccion VARCHAR(255),
-    email VARCHAR(255)
-);
-
--- Creación de la tabla carros
-CREATE TABLE carros (
-    id SERIAL PRIMARY KEY,
-    marca VARCHAR(255),
-    modelo VARCHAR(255),
-    color VARCHAR(50),
-    placa VARCHAR(20) UNIQUE,
-    propietario_id INTEGER,
-    FOREIGN KEY (propietario_id) REFERENCES clientes(id)
-);
-
--- Creación de la tabla ingresos
-CREATE TABLE ingresos (
-    id SERIAL PRIMARY KEY,
-    fecha_entrada TIMESTAMP,
-    vehiculo_id INTEGER,
-    FOREIGN KEY (vehiculo_id) REFERENCES carros(id)
-);
-
--- Creación de la tabla salidas
-CREATE TABLE salidas (
-    id SERIAL PRIMARY KEY,
-    fecha_salida TIMESTAMP,
-    ingreso_id INTEGER,
-    FOREIGN KEY (ingreso_id) REFERENCES ingresos(id)
-);
-
--- Creación de la tabla pagos
-CREATE TABLE pagos (
-    id SERIAL PRIMARY KEY,
-    monto DECIMAL(10, 2),
-    metodo_pago VARCHAR(100),
-    fecha_pago DATE,
-    ingreso_id INTEGER,
-    FOREIGN KEY (ingreso_id) REFERENCES ingresos(id)
-);
-
-CREATE TABLE registro_pagos (
-    id SERIAL PRIMARY KEY,
-    carros_id INTEGER REFERENCES carros(id),
-    pagos_id INTEGER REFERENCES pagos(id),
-    fecha_pago TIMESTAMP,
-    FOREIGN KEY (carros_id) REFERENCES carros(id)
-);
-
-CREATE TABLE parqueadero (
-    id SERIAL PRIMARY KEY,
-    capacidad INTEGER,
-    espacios_disponibles INTEGER
-);
-
-
+--crear 
+-- Agregar un nuevo cliente
 INSERT INTO clientes (nombre, apellido, telefono, direccion, email) 
-VALUES 
-('Juan', 'Pérez', '123456789', 'Calle Principal 123', 'juan@example.com'),
-('María', 'González', '987654321', 'Avenida 5 456', 'maria@example.com'),
-('Pedro', 'Rodríguez', '555123456', 'Calle 12 789', 'pedro@example.com');
+VALUES ('Ana', 'Martínez', '777888999', 'Calle Falsa 123', 'ana@example.com');
 
+-- Agregar un nuevo carro
 INSERT INTO carros (marca, modelo, color, placa, propietario_id) 
-VALUES 
-('Toyota', 'Corolla', 'Azul', 'DPC-467', 1),
-('Ford', 'Focus', 'Rojo', 'ABC123', 2),
-('Honda', 'Civic', 'Blanco', 'XYZ789', 3);
+VALUES ('Chevrolet', 'Spark', 'Negro', 'LMN456', 1);
 
+-- Registrar una nueva entrada
 INSERT INTO ingresos (fecha_entrada, vehiculo_id) 
-VALUES 
-('2024-05-25 10:00:00', 1),
-('2024-05-26 11:00:00', 2),
-('2024-05-27 12:00:00', 3);
+VALUES ('2024-06-01 08:00:00', 4);
 
+-- Registrar una nueva salida
 INSERT INTO salidas (fecha_salida, ingreso_id)
-VALUES 
-('2024-05-25 15:00:00', 1),
-('2024-05-26 16:00:00', 2),
-('2024-05-27 17:00:00', 3);
+VALUES ('2024-06-01 12:00:00', 4);
 
+-- Registrar un nuevo pago
 INSERT INTO pagos (monto, metodo_pago, fecha_pago, ingreso_id)
-VALUES 
-(150.00, 'Efectivo', '2024-05-25', 1),
-(120.00, 'Tarjeta', '2024-05-26', 2),
-(180.00, 'Efectivo', '2024-05-27', 3);
+VALUES (200.00, 'Transferencia', '2024-06-01', 4);
 
+-- Actualizar el parqueadero
 INSERT INTO parqueadero (capacidad, espacios_disponibles) 
-VALUES 
-(100, 100),
-(200, 150),
-(300, 250);
+VALUES (400, 350);
 
+
+--leer
+-- Obtener todos los clientes
+SELECT * FROM clientes;
+
+-- Obtener todos los carros
+SELECT * FROM carros;
+
+-- Obtener todas las entradas
+SELECT * FROM ingresos;
+
+-- Obtener todas las salidas
+SELECT * FROM salidas;
+
+-- Obtener todos los pagos
+SELECT * FROM pagos;
+
+-- Obtener la capacidad y espacios disponibles del parqueadero
+SELECT * FROM parqueadero;
+
+
+--actualizar
+-- Actualizar la dirección de un cliente
+UPDATE clientes
+SET direccion = 'Nueva Dirección 456'
+WHERE id = 1;
+
+-- Actualizar el color de un carro
+UPDATE carros
+SET color = 'Verde'
+WHERE id = 2;
+
+-- Actualizar la fecha de entrada de un ingreso
+UPDATE ingresos
+SET fecha_entrada = '2024-06-02 09:00:00'
+WHERE id = 1;
+
+-- Actualizar la fecha de salida de una salida
+UPDATE salidas
+SET fecha_salida = '2024-06-02 13:00:00'
+WHERE id = 1;
+
+-- Actualizar el monto de un pago
+UPDATE pagos
+SET monto = 160.00
+WHERE id = 1;
+
+-- Actualizar la capacidad del parqueadero
+UPDATE parqueadero
+SET capacidad = 500, espacios_disponibles = 450
+WHERE id = 1;
+
+
+--borrar
+-- Eliminar un cliente
+DELETE FROM clientes
+WHERE id = 1;
+
+-- Eliminar un carro
+DELETE FROM carros
+WHERE id = 1;
+
+-- Eliminar un ingreso
+DELETE FROM ingresos
+WHERE id = 1;
+
+-- Eliminar una salida
+DELETE FROM salidas
+WHERE id = 1;
+
+-- Eliminar un pago
+DELETE FROM pagos
+WHERE id = 1;
+
+-- Eliminar un registro del parqueadero
+DELETE FROM parqueadero
+WHERE id = 1;
 
