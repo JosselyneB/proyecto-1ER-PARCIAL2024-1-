@@ -1,23 +1,28 @@
 public class Vehiculo {
-    private String placa;
+    private int id;
     private String marca;
     private String modelo;
-    private Cliente propietario;
+    private String color;
+    private String placa;
+    private int propietarioId;
 
-    public Vehiculo(String placa, String marca, String modelo, Cliente propietario) {
-        this.placa = placa;
+    // Constructor
+    public Vehiculo(int id, String marca, String modelo, String color, String placa, int propietarioId) {
+        this.id = id;
         this.marca = marca;
         this.modelo = modelo;
-        this.propietario = propietario;
-    }
-
-    // Getters y setters
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
+        this.color = color;
         this.placa = placa;
+        this.propietarioId = propietarioId;
+    }
+
+    // Getters y setters (puedes generarlos automáticamente en tu IDE)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMarca() {
@@ -36,11 +41,39 @@ public class Vehiculo {
         this.modelo = modelo;
     }
 
-    public Cliente getPropietario() {
-        return propietario;
+    public String getColor() {
+        return color;
     }
 
-    public void setPropietario(Cliente propietario) {
-        this.propietario = propietario;
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public int getPropietarioId() {
+        return propietarioId;
+    }
+
+    public void setPropietarioId(int propietarioId) {
+        this.propietarioId = propietarioId;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehiculo{" +
+                "id=" + id +
+                ", marca='" + marca + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", color='" + color + '\'' +
+                ", placa='" + placa + '\'' +
+                ", propietarioId=" + propietarioId +
+                '}';
     }
 }
